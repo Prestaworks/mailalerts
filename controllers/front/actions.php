@@ -96,6 +96,10 @@ class MailalertsActionsModuleFrontController extends ModuleFrontController
 			$customer = $context->customer->getByEmail($customer_email);
 			$id_customer = (isset($customer->id) && ($customer->id != null)) ? (int)$customer->id : null;
 		}
+        
+        if (!filter_var($customer_email, FILTER_VALIDATE_EMAIL)) {
+            die('0');
+        }
 
 		$id_product = (int)Tools::getValue('id_product');
 		$id_product_attribute = (int)Tools::getValue('id_product_attribute');
